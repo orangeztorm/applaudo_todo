@@ -3,5 +3,7 @@
     "counterAppBarTitle": "Contador",
     "@counterAppBarTitle": {
         "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+    },
+    "pageNotFoundMessage": "Maaf, kami tidak dapat menemukan halaman itu…",
+    "backToHomeLabel": "Kembali Ke Home"
 }
