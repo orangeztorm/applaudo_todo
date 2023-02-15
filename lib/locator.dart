@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:applaudo_todo/core/core.dart';
+import 'package:applaudo_todo/features/todo/todo.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -22,75 +24,64 @@ Future<void> setupLocator() async {
 
   // // Presentation
 
-  // // --------------------------------- signup ------------------------------
-  // //bloc
-  // getIt.registerFactory(
-  //   () => SignInBloc(
-  //     loginUseCase: getIt(),
-  //   ),
-  // );
+  // --------------------------------- auth ------------------------------
+  //bloc
+  getIt.registerFactory(
+    () => AuthBloc(
+      loginUseCase: getIt(),
+    ),
+  );
 
-  // getIt.registerFactory(
-  //   () => NewTaskCubit(),
-  // );
+  // usecases
+  getIt.registerLazySingleton(
+    () => LoginUseCase(
+      todoRepository: getIt(),
+    ),
+  );
 
-  // // usecases
-  // getIt.registerLazySingleton(() => LoginUseCase(loginRepository: getIt()));
+  getIt.registerLazySingleton(
+    () => GetCategoriesUseCase(todoRepository: getIt()),
+  );
 
-  // getIt.registerLazySingleton(
-  //   () => GetCategoriesUseCase(todoRepository: getIt()),
-  // );
+  getIt.registerFactory(
+    () => TodoBloc(
+      getTodosUseCase: getIt(),
+      updateTodoUseCase: getIt(),
+    ),
+  );
 
-  // // repository
-  // getIt.registerLazySingleton<LoginRepository>(
-  //   () => LoginRepositoryImpl(
-  //     networkInfo: getIt(),
-  //     loginRemoteDataSource: getIt(),
-  //     tokenLocalDataSource: getIt(),
-  //   ),
-  // );
+  getIt.registerLazySingleton(
+    () => GetTodosUseCase(
+      todoRepository: getIt(),
+    ),
+  );
 
-  // // datasources
-  // getIt.registerLazySingleton<LoginRemoteDataSource>(
-  //   () => LoginRemoteDataSourceImpl(
-  //     client: getIt(),
-  //   ),
-  // );
+  getIt.registerLazySingleton(
+    () => UpdateTodoUseCase(
+      todoRepository: getIt(),
+    ),
+  );
 
-  // // --------------------------------- Task Feature ------------------------------
-  // getIt.registerFactory(
-  //   () => TaskBloc(
-  //     addTaskUseCase: getIt(),
-  //     getTasksUseCase: getIt(),
-  //     updateTaskUseCase: getIt(),
-  //   ),
-  // );
+  getIt.registerLazySingleton<TodoRepository>(
+    () => TodoRepositoryImpl(
+      networkInfo: getIt(),
+      todoRemoteDataSource: getIt(),
+      tokenLocalDataSource: getIt(),
+    ),
+  );
 
-  // getIt.registerLazySingleton(() => AddTaskUseCase(todoRepository: getIt()));
-  // getIt.registerLazySingleton(() => GetTasksUseCase(todoRepository: getIt()));
-  // getIt.registerLazySingleton(() => UpdateTaskUseCase(todoRepository: getIt()));
+  getIt.registerLazySingleton<TodoRemoteDataSource>(
+    () => TodoRemoteDataSourceImpl(
+      client: getIt(),
+      tokenLocalDataSource: getIt(),
+    ),
+  );
 
-  // getIt.registerLazySingleton<TodoRepository>(
-  //   () => TodoRepositoryImpl(
-  //     networkInfo: getIt(),
-  //     todoRemoteDataSource: getIt(),
-  //   ),
-  // );
-
-  // getIt.registerLazySingleton<TodoRemoteDataSource>(
-  //   () => TodoRemoteDataSourceImpl(
-  //     client: getIt(),
-  //     tokenLocalDataSource: getIt(),
-  //   ),
-  // );
-
-  // getIt.registerLazySingleton<TokenLocalDataSource>(
-  //   () => TokenDataSourceImpl(
-  //     sharedPreferences: getIt(),
-  //   ),
-  // );
-
-  // --------------------------------- Task Feature ---------------------------
+  getIt.registerLazySingleton<TokenLocalDataSource>(
+    () => TokenDataSourceImpl(
+      sharedPreferences: getIt(),
+    ),
+  );
 
   // getIt.registerLazySingleton(http.Client.new);
 }
@@ -101,9 +92,9 @@ Future<void> _setupCore() async {
 
   final sharedPreferences = await SharedPreferences.getInstance();
 
-  // getIt.registerLazySingleton<NetworkInfo>(
-  //   () => NetworkInfoImpl(getIt<InternetConnectionChecker>()),
-  // );
+  getIt.registerLazySingleton<NetworkInfo>(
+    () => NetworkInfoImpl(getIt<InternetConnectionChecker>()),
+  );
 
   getIt.registerLazySingleton(() => sharedPreferences);
   getIt.registerLazySingleton(
