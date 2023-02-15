@@ -50,6 +50,12 @@ Future<void> setupLocator() async {
     ),
   );
 
+  getIt.registerFactory(
+    () => AddTodoBloc(
+      addTodoUseCase: getIt(),
+    ),
+  );
+
   getIt.registerLazySingleton(
     () => GetTodosUseCase(
       todoRepository: getIt(),
@@ -59,6 +65,18 @@ Future<void> setupLocator() async {
   getIt.registerLazySingleton(
     () => UpdateTodoUseCase(
       todoRepository: getIt(),
+    ),
+  );
+
+  getIt.registerLazySingleton(
+    () => AddTodoUseCase(
+      todoRepository: getIt(),
+    ),
+  );
+
+  getIt.registerFactory(
+    () => CategoryBloc(
+      getCategoriesUseCase: getIt(),
     ),
   );
 

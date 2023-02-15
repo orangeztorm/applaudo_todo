@@ -4,8 +4,8 @@ import 'package:formz/formz.dart';
 
 part 'new_todo_state.dart';
 
-class NewTodoCubit extends Cubit<AddTodoState> {
-  NewTodoCubit() : super(AddTodoState());
+class NewTodoCubit extends Cubit<AddTodoFormState> {
+  NewTodoCubit() : super(AddTodoFormState());
 
   void onCategoryChange(CategoryEntity category) {
     emit(state.copyWith(category: category));

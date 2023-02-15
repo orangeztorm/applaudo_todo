@@ -151,6 +151,9 @@ class LightTheme extends BaseTheme {
       colorScheme: scheme.copyWith(
         error: errorColor,
         onPrimary: blackRussian,
+        onSecondary: licorice,
+        onSurface: dividerColor,
+        inversePrimary: comet,
       ),
     );
   }

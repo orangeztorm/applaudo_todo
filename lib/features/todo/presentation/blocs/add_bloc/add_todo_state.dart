@@ -2,7 +2,7 @@ part of 'add_todo_bloc.dart';
 
 enum AddTodoStatus { initial, submitting, success, failure }
 
-extension TodoStatusX on AddTodoStatus {
+extension AddTodoStatusX on AddTodoStatus {
   bool get isInitial => this == AddTodoStatus.initial;
   bool get submitting => this == AddTodoStatus.submitting;
   bool get isSuccess => this == AddTodoStatus.success;

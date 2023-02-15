@@ -85,6 +85,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void setUpPeridicTimer() {
     // a timer that calls the update event every 3600 seconds
+    console('started timer');
     Timer.periodic(const Duration(seconds: 3600), (timer) {
       _timerSubscription?.cancel();
       _timerSubscription =

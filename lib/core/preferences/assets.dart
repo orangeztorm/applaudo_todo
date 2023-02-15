@@ -5,8 +5,6 @@ class MainAssets {
 
   static const String _baseImagePath = 'assets/images';
 
-  // Bitmap
-  static const String notFoundImg = '$_baseImagePath/bitmap/not_found.webp';
 
   // Icon
 

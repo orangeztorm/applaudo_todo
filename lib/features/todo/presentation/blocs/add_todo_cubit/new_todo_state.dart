@@ -3,8 +3,8 @@
 
 part of 'new_todo_cubit.dart';
 
-class AddTodoState extends Formz {
-  AddTodoState({
+class AddTodoFormState extends Formz {
+  AddTodoFormState({
     this.title = const RequiredValue.dirty(),
     this.date = const RequiredValue.dirty(),
     this.category,
@@ -16,7 +16,7 @@ class AddTodoState extends Formz {
   final CategoryEntity? category;
   final FormzStatus status;
 
-  AddTodoState copyWith({
+  AddTodoFormState copyWith({
     RequiredValue? title,
     RequiredValue? date,
     CategoryEntity? category,
@@ -33,7 +33,7 @@ class AddTodoState extends Formz {
       _status = FormzStatus.invalid;
     }
 
-    return AddTodoState(
+    return AddTodoFormState(
       title: _title,
       date: _date,
       category: _category,

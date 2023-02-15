@@ -1,41 +1,46 @@
-import 'package:applaudo_todo/features/features.dart';
-import 'package:flutter/foundation.dart';
+import 'dart:io' show Platform;
+
+import 'package:applaudo_todo/core/core.dart';
+import 'package:applaudo_todo/features/counter/counter.dart';
+import 'package:applaudo_todo/features/todo/todo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class AppRouter {
-  const AppRouter._();
+class RouteGenerator {
+  // static const String  = '/';
+  static const String counterPage = '/counterPage';
+  static const String home = '/home';
+  static const String addTodoPage = '/addTodoPage';
 
-  static final navigatorKey = GlobalKey<NavigatorState>();
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case counterPage:
+        return Platform.isIOS
+            ? CupertinoPageRoute(builder: (_) => const CounterPage())
+            : MaterialPageRoute(builder: (_) => const CounterPage());
 
-  static GoRouter router = GoRouter(
-    routes: <GoRoute>[
+      case home:
+        return Platform.isIOS
+            ? CupertinoPageRoute(builder: (_) => const TodoPage())
+            : MaterialPageRoute(builder: (_) => const TodoPage());
 
+      case addTodoPage:
+        return Platform.isIOS
+            ? CupertinoPageRoute(builder: (_) => const AddTodoPage())
+            : MaterialPageRoute(builder: (_) => const AddTodoPage());
 
-      // Counter Page
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const CounterPage(),
-        
-      ),
+      default:
+        return errorRoute();
 
+      // return errorRoute();
+    }
+  }
 
-      // // Home Module
-      // GoRoute(
-      //   path: '/home',
-      //   builder: (context, state) => const HomePage(),
-      // ),
-
-      // // Settings Module
-      // GoRoute(
-      //   path: '/settings',
-      //   builder: (context, state) => const SettingsPage(),
-      // ),
-    ],
-    errorBuilder: (context, state) {
-      return Text('Error Page : ${state.error}');
-    },
-    urlPathStrategy: UrlPathStrategy.path,
-    debugLogDiagnostics: kDebugMode,
-  );
+  static Route<dynamic> errorRoute() {
+    return CupertinoPageRoute(
+      builder: (_) {
+        return const NotFoundPage();
+      },
+    );
+  }
 }

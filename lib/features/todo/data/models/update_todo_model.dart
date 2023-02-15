@@ -51,7 +51,7 @@ class UpdateTodoFields {
       UpdateTodoFields(
         date: UpdateTodoDate.fromJson(json['date'] as Map<String, dynamic>),
         isCompleted: UpdateTodoIsCompleted.fromJson(
-            json['isCompleted'] as Map<String, dynamic>),
+            json['isCompleted'] as Map<String, dynamic>,),
         categoryId: UpdateTodoCategoryId.fromJson(
           json['categoryId'] as Map<String, dynamic>,
         ),
