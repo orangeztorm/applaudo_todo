@@ -10,6 +10,12 @@ class MainAssets {
 
   // Icon
 
+  static const String googleIconSvg = '$_baseImagePath/google_icon.svg';
+  static const String googleIconPng = '$_baseImagePath/google_icon.png';
+  static const String userIconSvg = '$_baseImagePath/user.svg';
+  static const String userIconPng = '$_baseImagePath/user.png';
+  static const String calenderIconPng = '$_baseImagePath/calender.png';
+
   // Illustration
 
   // ---------------------------- END IMAGES -----------------------------------
@@ -17,5 +23,4 @@ class MainAssets {
   // ------------------------------ OTHER --------------------------------------
 
   // ------------------------------ END OTHER ----------------------------------
-
 }

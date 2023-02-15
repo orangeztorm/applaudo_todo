@@ -10,6 +10,8 @@ class LightTheme extends BaseTheme {
   static const Color whiteSmoke = Color(0xFFF8F8F8);
   static const Color licorice = Color(0xFF292B35);
   static const Color comet = Color(0xFF575767);
+  static const Color errorColor = Color(0xFFE74C3C);
+  static const Color blackRussian = Color(0xFF0E0E11);
   static const Color dividerColor = ghost;
 
   @override
@@ -79,7 +81,7 @@ class LightTheme extends BaseTheme {
 
     return InputDecorationTheme(
       filled: true,
-      fillColor: Colors.white,
+      fillColor: comet,
       contentPadding: const EdgeInsets.symmetric(
         vertical: Dimens.dp12,
         horizontal: Dimens.dp16,
@@ -93,6 +95,16 @@ class LightTheme extends BaseTheme {
           baseBorder.copyWith(borderSide: const BorderSide(color: Colors.red)),
       errorBorder:
           baseBorder.copyWith(borderSide: const BorderSide(color: Colors.red)),
+      labelStyle: TextStyle(
+        color: primaryColor,
+        fontSize: Dimens.dp12,
+        fontWeight: FontWeight.w400,
+      ),
+      hintStyle: TextStyle(
+        color: const Color(0xFF000000).withOpacity(0.5),
+        fontSize: Dimens.dp14,
+        fontWeight: FontWeight.w500,
+      ),
     );
   }
 
@@ -110,7 +122,6 @@ class LightTheme extends BaseTheme {
       inputDecorationTheme: inputDecoration,
       dividerColor: dividerColor,
       cardTheme: card,
-      colorScheme: scheme,
       textTheme: const TextTheme(
         displayLarge: TextStyle(
           fontSize: Dimens.dp32,
@@ -136,6 +147,10 @@ class LightTheme extends BaseTheme {
           fontFamily: 'Inter',
           color: comet,
         ),
+      ),
+      colorScheme: scheme.copyWith(
+        error: errorColor,
+        onPrimary: blackRussian,
       ),
     );
   }
