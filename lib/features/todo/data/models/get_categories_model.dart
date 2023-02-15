@@ -1,5 +1,5 @@
 
-// ignore_for_file: avoid_dynamic_calls, sort_constructors_first, prefer_collection_literals, omit_local_variable_types
+// ignore_for_file: avoid_dynamic_calls, sort_constructors_first, prefer_collection_literals, omit_local_variable_types, annotate_overrides, overridden_fields, must_be_immutable, lines_longer_than_80_chars
 
 import 'package:applaudo_todo/features/todo/todo.dart';
 

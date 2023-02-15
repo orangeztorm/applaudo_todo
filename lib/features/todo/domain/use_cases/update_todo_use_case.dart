@@ -20,7 +20,7 @@ class UpdateTodoUseCase
       date: params.date,
       isCompleted: params.isCompleted,
       name: params.name,
-      taskName: params.taskName,
+      todoName: params.todoName,
     );
   }
 }
@@ -30,14 +30,14 @@ class UpdateTodoParams extends Equatable {
     required this.date,
     required this.categoryId,
     required this.name,
-    required this.taskName,
+    required this.todoName,
     required this.isCompleted,
   });
 
   final int date;
   final String categoryId;
   final String name;
-  final String taskName;
+  final String todoName;
   final bool isCompleted;
 
   @override
@@ -45,7 +45,7 @@ class UpdateTodoParams extends Equatable {
         date,
         categoryId,
         name,
-        taskName,
+        todoName,
         isCompleted,
       ];
 }

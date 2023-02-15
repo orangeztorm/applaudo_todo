@@ -33,7 +33,6 @@ updateTodo
 */
 
 abstract class TodoRemoteDataSource {
-
   /// login with hardcoded user credentials
   Future<LoginDataModel> loginUserWithCredentials({
     required String email,
@@ -65,7 +64,7 @@ abstract class TodoRemoteDataSource {
     required int date,
     required String categoryId,
     required String name,
-    required String taskName,
+    required String todoName,
     required bool isCompleted,
     required String apiKey,
   });
@@ -84,7 +83,6 @@ class TodoRemoteDataSourceImpl implements TodoRemoteDataSource {
   });
   final http.Client client;
   final TokenLocalDataSource tokenLocalDataSource;
-
 
   @override
   Future<LoginDataModel> loginUserWithCredentials({
@@ -134,7 +132,6 @@ class TodoRemoteDataSourceImpl implements TodoRemoteDataSource {
       throw GeneralServerException(message: e.toString());
     }
   }
-
 
   @override
   Future<AddTodoModel> addTodo({
@@ -288,7 +285,7 @@ class TodoRemoteDataSourceImpl implements TodoRemoteDataSource {
     required int date,
     required String categoryId,
     required String name,
-    required String taskName,
+    required String todoName,
     required bool isCompleted,
     required String apiKey,
   }) async {
@@ -308,7 +305,7 @@ class TodoRemoteDataSourceImpl implements TodoRemoteDataSource {
         'fields': {
           'date': {'integerValue': date},
           'categoryId': {'stringValue': categoryId},
-          'name': {'stringValue': taskName},
+          'name': {'stringValue': todoName},
           'isCompleted': {'booleanValue': isCompleted}
         }
       };

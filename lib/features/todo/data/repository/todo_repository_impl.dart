@@ -16,7 +16,6 @@ class TodoRepositoryImpl implements TodoRepository {
   static const String _noInternetConnection = 'No internet connection';
   static const int _noInternetConnectionCode = 400;
 
-
   @override
   Future<Either<Failure, LoginEntity>> loginWithCredentials({
     required String email,
@@ -52,7 +51,6 @@ class TodoRepositoryImpl implements TodoRepository {
       );
     }
   }
-
 
   @override
   Future<Either<Failure, TodobaseEntity>> addTodo({
@@ -167,7 +165,7 @@ class TodoRepositoryImpl implements TodoRepository {
   Future<Either<Failure, TodobaseEntity>> updateTodo({
     required int date,
     required String name,
-    required String taskName,
+    required String todoName,
     required bool isCompleted,
     required String categoryId,
   }) async {
@@ -179,7 +177,7 @@ class TodoRepositoryImpl implements TodoRepository {
           categoryId: categoryId,
           name: name,
           isCompleted: isCompleted,
-          taskName: taskName,
+          todoName: todoName,
           apiKey: apiKey,
         );
         return Right(

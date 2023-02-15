@@ -18,7 +18,7 @@ abstract class TodoRepository {
   Future<Either<Failure, TodobaseEntity>> updateTodo({
     required int date,
     required String name,
-    required String taskName,
+    required String todoName,
     required bool isCompleted,
     required String categoryId,
   });

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, annotate_overrides, prefer_const_constructors_in_immutables
+// ignore_for_file: public_member_api_docs, sort_constructors_first, annotate_overrides, prefer_const_constructors_in_immutables, overridden_fields, lines_longer_than_80_chars
 import 'dart:convert';
 import 'package:applaudo_todo/features/todo/todo.dart';
 
