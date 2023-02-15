@@ -18,11 +18,43 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^9.1.1
+  flutter_svg: ^2.0.0+1
   flutter_test:
     sdk: flutter
+  formz: ^0.4.1
+  get_it: ^7.2.0
+  http: ^0.13.5
+  internet_connection_checker: ^0.0.1+4
+  json_annotation: ^4.6.0
   mocktail: ^0.3.0
+  path_provider: ^2.0.12
+  shared_preferences: ^2.0.17
+  syncfusion_flutter_datepicker: ^20.4.48
   very_good_analysis: ^4.0.0
 
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/
+    - assets/fonts/
+    - assets/images/
+
+font:
+  - family: 
+    - Nunito Sans
+    fonts: 
+      - asset: assets/fonts/NunitoSans-Regular.ttf
+        weight: 400
+  - family: 
+    - Poppins
+    fonts: 
+      - asset: assets/fonts/Poppins-Regular.ttf
+        weight: 400
+  - family:
+    - Inter
+    fonts:
+      - asset: assets/fonts/Inter-Regular.ttf
+        weight: 400
+
