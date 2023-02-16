@@ -49,6 +49,14 @@ class TodoRepositoryImpl implements TodoRepository {
           code: e.code,
         ),
       );
+    }catch (e) {
+      console('passed server exception $e');
+      return Left(
+        ServerFailure(
+          message: e.toString(),
+          code: 400,
+        ),
+      );
     }
   }
 
@@ -91,6 +99,14 @@ class TodoRepositoryImpl implements TodoRepository {
           code: e.code,
         ),
       );
+    }catch (e) {
+      console('passed server exception $e');
+      return Left(
+        ServerFailure(
+          message: e.toString(),
+          code: 400,
+        ),
+      );
     }
   }
 
@@ -119,6 +135,14 @@ class TodoRepositoryImpl implements TodoRepository {
         ServerFailure(
           message: e.message,
           code: e.code,
+        ),
+      );
+    }catch (e) {
+      console('passed server exception $e');
+      return Left(
+        ServerFailure(
+          message: e.toString(),
+          code: 400,
         ),
       );
     }
@@ -200,6 +224,14 @@ class TodoRepositoryImpl implements TodoRepository {
         ServerFailure(
           message: e.message,
           code: e.code,
+        ),
+      );
+    }catch (e) {
+      console('passed server exception $e');
+      return Left(
+        ServerFailure(
+          message: e.toString(),
+          code: 400,
         ),
       );
     }

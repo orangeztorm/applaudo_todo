@@ -17,8 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   final LoginUseCase loginUseCase;
-  // ignore: strict_raw_type
-  late StreamSubscription? _timerSubscription;
+  StreamSubscription? _timerSubscription;
 
   Future<dynamic> _login(
     Login event,
@@ -40,7 +39,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ),
       ),
       (user) {
-        setUpPeridicTimer();
+        setUpPeriodicTimer(
+          int.parse(user.expiresIn),
+        );
         emit(
           state.copyWith(
             status: AuthStatus.success,
@@ -55,6 +56,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     UpdateLoginToken event,
     Emitter<AuthState> emit,
   ) async {
+    console('update token');
     final result = await loginUseCase(
       const LoginParams(
         email: 'test@test.com',
@@ -63,36 +65,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     result.fold(
       (failure) {
-        // emit(
-        //   state.copyWith(
-        //     status: AuthStatus.error,
-        //     failure: failure,
-        //   ),
-        // );
         add(const UpdateLoginToken());
       },
       (user) {
-        // setUpPeridicTimer();
-        // emit(
-        //   state.copyWith(
-        //     status: AuthStatus.success,
-        //     user: user,
-        //   ),
-        // );
+        // Handle successful token update here.
       },
     );
   }
 
-  void setUpPeridicTimer() {
-    // a timer that calls the update event every 3600 seconds
+  void setUpPeriodicTimer(int durationInSeconds) {
+    // A timer that calls the update event every `durationInSeconds` seconds.
     console('started timer');
-    Timer.periodic(const Duration(seconds: 3600), (timer) {
-      _timerSubscription?.cancel();
-      _timerSubscription =
-          // ignore: inference_failure_on_instance_creation
-          Stream.periodic(const Duration(seconds: 3600)).listen((_) {
-        add(const UpdateLoginToken());
-      });
+    _timerSubscription?.cancel();
+    _timerSubscription =
+        Stream<void>.periodic(Duration(seconds: durationInSeconds)).listen((_) {
+      add(const UpdateLoginToken());
     });
   }
 }

@@ -247,16 +247,20 @@ class _IncompleteTodoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final inCompletedTask =
         context.watch<ActiveInactiveTodoCubit>().state.inActiveTodo;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppText(
-          data: 'Incomplete',
-          fontSize: Dimens.dp18,
-          fontWeight: FontWeight.w700,
+        Text(
+          'Incomplete',
+          style: theme.textTheme.headlineMedium?.copyWith(
+            color: theme.colorScheme.inversePrimary,
+            fontWeight: FontWeight.w500,
+            fontSize: Dimens.dp18,
+          ),
         ),
         const SizedBox(
           height: Dimens.dp16,
@@ -285,15 +289,22 @@ class _CompleteTodoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final completedTask =
         context.watch<ActiveInactiveTodoCubit>().state.activeTodo;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AppText(
-          data: 'Completed',
-          fontSize: Dimens.dp18,
-          fontWeight: FontWeight.w700,
+        const SizedBox(
+          height: Dimens.dp16,
+        ),
+        Text(
+          'Completed',
+          style: theme.textTheme.headlineMedium?.copyWith(
+            color: theme.colorScheme.inversePrimary,
+            fontWeight: FontWeight.w500,
+            fontSize: Dimens.dp18,
+          ),
         ),
         const SizedBox(
           height: Dimens.dp16,
