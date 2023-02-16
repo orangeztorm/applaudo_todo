@@ -10,6 +10,17 @@ A Very Good Project created by Very Good CLI.
 
 ---
 
+![alt text](https://github.com/orangeztorm/applaudo_todo/blob/master/Simulator%20Screen%20Shot%20-%20iPhone%2013%20Pro%20Max%20-%202023-02-16%20at%2009.13.14.png)
+
+
+![alt text](https://github.com/orangeztorm/applaudo_todo/blob/master/Simulator%20Screen%20Shot%20-%20iPhone%2013%20Pro%20Max%20-%202023-02-16%20at%2008.54.03.png)
+
+
+![alt text](https://github.com/orangeztorm/applaudo_todo/blob/master/Simulator%20Screen%20Shot%20-%20iPhone%2013%20Pro%20Max%20-%202023-02-16%20at%2009.14.02.png)
+
+
+
+
 ## Getting Started 🚀
 
 This project contains 3 flavors:
