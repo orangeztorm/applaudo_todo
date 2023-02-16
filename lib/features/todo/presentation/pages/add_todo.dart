@@ -177,15 +177,19 @@ class DateTextField extends StatelessWidget {
       bloc: context.read<NewTodoCubit>(),
       builder: (BuildContext context, AddTodoFormState state) {
         final dateTextController = TextEditingController(
-          text: state.date.value,
+          text: convertToDDMMYYYY(DateTime.parse(state.date.value)),
         );
         return AppContainer(
           height: Dimens.dp56,
           child: AppTextField(
             controller: dateTextController,
+            keyboardType: TextInputType.number,
             hintText: 'When?',
             suffixIcon: GestureDetector(
               onTap: () {
+                context.read<NewTodoCubit>().onDateChange(
+                      DateTime.now().toString(),
+                    );
                 if (Platform.isIOS) {
                   _showIosDatePicker(context);
                 } else {
@@ -243,21 +247,28 @@ class DateTextField extends StatelessWidget {
     // ignore: inference_failure_on_function_invocation
     showDialog(
       context: context,
-      builder: (context) {
+      builder: (builderContext) {
         return AlertDialog(
           content: SizedBox(
             height: Dimens.dp300,
             width: Dimens.dp300,
             child: SfDateRangePicker(
+              selectionMode: DateRangePickerSelectionMode.single,
               minDate: DateTime.now(),
-              maxDate: DateTime.now().add(
-                const Duration(days: 365),
-              ),
+              maxDate: DateTime.now().add(const Duration(days: 365)),
               headerHeight: Dimens.dp14,
-              onSelectionChanged: (dateRangePickerSelectionChangedArgs) {
-                context.read<NewTodoCubit>().onDateChange(
-                      dateRangePickerSelectionChangedArgs.toString(),
-                    );
+              onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                // Extract the selected date from the argument
+                final selectedDate = args.value is DateTime ? args.value : null;
+                if (selectedDate != null) {
+                  // Update the state with the selected date
+                  context
+                      .read<NewTodoCubit>()
+                      .onDateChange(selectedDate.toString());
+
+                  // Pop the current screen
+                  Navigator.pop(context);
+                }
               },
             ),
           ),
