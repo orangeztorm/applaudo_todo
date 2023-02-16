@@ -176,9 +176,15 @@ class DateTextField extends StatelessWidget {
     return BlocBuilder(
       bloc: context.read<NewTodoCubit>(),
       builder: (BuildContext context, AddTodoFormState state) {
-        final dateTextController = TextEditingController(
-          text: convertToDDMMYYYY(DateTime.parse(state.date.value)),
-        );
+        late TextEditingController dateTextController;
+        if (state.date.value.isNotEmpty) {
+          dateTextController = TextEditingController(
+            text: convertToDDMMYYYY(DateTime.parse(state.date.value)),
+          );
+        } else {
+          dateTextController = TextEditingController();
+        }
+
         return AppContainer(
           height: Dimens.dp56,
           child: AppTextField(
@@ -248,12 +254,27 @@ class DateTextField extends StatelessWidget {
     showDialog(
       context: context,
       builder: (builderContext) {
+        final theme = Theme.of(context);
         return AlertDialog(
           content: SizedBox(
             height: Dimens.dp300,
             width: Dimens.dp300,
             child: SfDateRangePicker(
-              selectionMode: DateRangePickerSelectionMode.single,
+              monthCellStyle: DateRangePickerMonthCellStyle(
+                textStyle: theme.textTheme.headlineLarge?.copyWith(
+                  color: theme.colorScheme.onSecondary,
+                  fontWeight: FontWeight.w500,
+                  fontSize: Dimens.dp16,
+                ),
+              ),
+              headerStyle: DateRangePickerHeaderStyle(
+                textAlign: TextAlign.center,
+                textStyle: theme.textTheme.headlineLarge?.copyWith(
+                  color: theme.colorScheme.onSecondary,
+                  fontWeight: FontWeight.w500,
+                  fontSize: Dimens.dp16,
+                ),
+              ),
               minDate: DateTime.now(),
               maxDate: DateTime.now().add(const Duration(days: 365)),
               headerHeight: Dimens.dp14,
