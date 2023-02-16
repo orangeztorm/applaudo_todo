@@ -28,10 +28,10 @@ class PlatformDropdown<T> extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: theme.colorScheme.onPrimary,
-        border: const Border(
+        color: theme.inputDecorationTheme.fillColor,
+        border: Border(
           bottom: BorderSide(
-            color: Colors.blue,
+            color: theme.primaryColor,
             width: 2,
           ),
         ),
@@ -42,7 +42,12 @@ class PlatformDropdown<T> extends StatelessWidget {
           value: selectedValue,
           onChanged: onChanged,
           isExpanded: true,
-          hint: const Text('Select an option'),
+          hint: Text(
+            'Select an option',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.hintColor,
+            ),
+          ),
           items: options.map<DropdownMenuItem<T>>(itemBuilder).toList(),
           icon: const Icon(Icons.arrow_drop_down),
           iconSize: 36,

@@ -81,7 +81,7 @@ class LightTheme extends BaseTheme {
 
     return InputDecorationTheme(
       filled: true,
-      fillColor: comet,
+      fillColor: comet.withOpacity(0.2),
       contentPadding: const EdgeInsets.symmetric(
         vertical: Dimens.dp12,
         horizontal: Dimens.dp16,

@@ -16,6 +16,7 @@ class App extends StatelessWidget {
       create: (context) => getIt<AuthBloc>()..add(const Login()),
       child: MaterialApp(
         theme: AppTheme.light.toTheme().data,
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         initialRoute: '/home',
